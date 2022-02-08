@@ -127,13 +127,13 @@ INSERT INTO orders (
   '{"method": "card", "card_type": "visa", "status": "done"}'::jsonb,
   1, 5,
   '{"expected delivery time": "40 days"}'::jsonb,
-  '10/08/2021', '01/10/2021'
+  10000, '10/08/2021', '01/10/2021'
 ), (
   1, 1, 2,
   '{"method": "bank transh", "status": "pending"}'::jsonb,
   2, 3,
   '{"expected delivery time": "28 days"}'::jsonb,
-  '08/02/2022', None
+  30000, '08/02/2022', null
 );
 
 --items
