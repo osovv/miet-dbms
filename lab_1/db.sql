@@ -4,9 +4,9 @@
 -- Project Site: pgmodeler.io
 -- Model Author: ---
 
--- Database creation must be performed outside a multi lined SQL file. 
+-- Database creation must be performed outside a multi lined SQL file.
 -- These commands were put in this file only as a convenience.
--- 
+--
 -- object: miet_lab1 | type: DATABASE --
 -- DROP DATABASE IF EXISTS miet_lab1;
 CREATE DATABASE miet_lab1;
@@ -153,6 +153,258 @@ CREATE TABLE public.orders (
 ALTER TABLE public.orders OWNER TO postgres;
 -- ddl-end --
 
+-- object: index_customers_on_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_customers_on_id CASCADE;
+CREATE INDEX index_customers_on_id ON public.customers
+USING btree
+(
+	id
+);
+-- ddl-end --
+
+-- object: index_customers_on_address_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_customers_on_address_id CASCADE;
+CREATE INDEX index_customers_on_address_id ON public.customers
+USING btree
+(
+	address_id
+);
+-- ddl-end --
+
+-- object: index_customers_on_fax_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_customers_on_fax_id CASCADE;
+CREATE INDEX index_customers_on_fax_id ON public.customers
+USING btree
+(
+	fax_id
+);
+-- ddl-end --
+
+-- object: index_customers_on_phone_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_customers_on_phone_id CASCADE;
+CREATE INDEX index_customers_on_phone_id ON public.customers
+USING btree
+(
+	phone_id
+);
+-- ddl-end --
+
+-- object: index_orders_on_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_orders_on_id CASCADE;
+CREATE INDEX index_orders_on_id ON public.orders
+USING btree
+(
+	id
+);
+-- ddl-end --
+
+-- object: index_orders_on_customer_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_orders_on_customer_id CASCADE;
+CREATE INDEX index_orders_on_customer_id ON public.orders
+USING btree
+(
+	customer_id
+);
+-- ddl-end --
+
+-- object: index_orders_on_address_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_orders_on_address_id CASCADE;
+CREATE INDEX index_orders_on_address_id ON public.orders
+USING btree
+(
+	address_id
+);
+-- ddl-end --
+
+-- object: index_orders_on_employee_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_orders_on_employee_id CASCADE;
+CREATE INDEX index_orders_on_employee_id ON public.orders
+USING btree
+(
+	employee_id
+);
+-- ddl-end --
+
+-- object: index_orders_on_created_at | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_orders_on_created_at CASCADE;
+CREATE INDEX index_orders_on_created_at ON public.orders
+USING btree
+(
+	created_at
+);
+-- ddl-end --
+
+-- object: index_items_on_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_items_on_id CASCADE;
+CREATE INDEX index_items_on_id ON public.items
+USING btree
+(
+	id
+);
+-- ddl-end --
+
+-- object: index_items_on_order_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_items_on_order_id CASCADE;
+CREATE INDEX index_items_on_order_id ON public.items
+USING btree
+(
+	order_id
+);
+-- ddl-end --
+
+-- object: index_items_on_part_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_items_on_part_id CASCADE;
+CREATE INDEX index_items_on_part_id ON public.items
+USING btree
+(
+	part_id
+);
+-- ddl-end --
+
+-- object: index_employees_on_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_employees_on_id CASCADE;
+CREATE INDEX index_employees_on_id ON public.employees
+USING btree
+(
+	id
+);
+-- ddl-end --
+
+-- object: index_parts_on_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_parts_on_id CASCADE;
+CREATE INDEX index_parts_on_id ON public.parts
+USING btree
+(
+	id
+);
+-- ddl-end --
+
+-- object: index_parts_on_vendor_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_parts_on_vendor_id CASCADE;
+CREATE INDEX index_parts_on_vendor_id ON public.parts
+USING btree
+(
+	vendor_id
+);
+-- ddl-end --
+
+-- object: index_vendors_on_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_vendors_on_id CASCADE;
+CREATE INDEX index_vendors_on_id ON public.vendors
+USING btree
+(
+	id
+);
+-- ddl-end --
+
+-- object: index_vendors_on_address_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_vendors_on_address_id CASCADE;
+CREATE INDEX index_vendors_on_address_id ON public.vendors
+USING btree
+(
+	address_id
+);
+-- ddl-end --
+
+-- object: index_vendors_on_fax_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_vendors_on_fax_id CASCADE;
+CREATE INDEX index_vendors_on_fax_id ON public.vendors
+USING btree
+(
+	fax_id
+);
+-- ddl-end --
+
+-- object: index_vendors_on_phone_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_vendors_on_phone_id CASCADE;
+CREATE INDEX index_vendors_on_phone_id ON public.vendors
+USING btree
+(
+	phone_id
+);
+-- ddl-end --
+
+-- object: index_faxes_on_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_faxes_on_id CASCADE;
+CREATE INDEX index_faxes_on_id ON public.faxes
+USING btree
+(
+	id
+);
+-- ddl-end --
+
+-- object: index_faxes_on_fax | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_faxes_on_fax CASCADE;
+CREATE INDEX index_faxes_on_fax ON public.faxes
+USING hash
+(
+	fax
+);
+-- ddl-end --
+
+-- object: index_phones_on_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_phones_on_id CASCADE;
+CREATE INDEX index_phones_on_id ON public.phones
+USING btree
+(
+	id
+);
+-- ddl-end --
+
+-- object: index_phones_on_phone | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_phones_on_phone CASCADE;
+CREATE INDEX index_phones_on_phone ON public.phones
+USING hash
+(
+	phone
+);
+-- ddl-end --
+
+-- object: index_addresses_on_id | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_addresses_on_id CASCADE;
+CREATE INDEX index_addresses_on_id ON public.addresses
+USING btree
+(
+	id
+);
+-- ddl-end --
+
+-- object: index_addresses_on_country | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_addresses_on_country CASCADE;
+CREATE INDEX index_addresses_on_country ON public.addresses
+USING hash
+(
+	country
+);
+-- ddl-end --
+
+-- object: index_addresses_on_shipping_address | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_addresses_on_shipping_address CASCADE;
+CREATE INDEX index_addresses_on_shipping_address ON public.addresses
+USING hash
+(
+	shipping_address
+);
+-- ddl-end --
+
+-- object: index_addresses_on_billing_address | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_addresses_on_billing_address CASCADE;
+CREATE INDEX index_addresses_on_billing_address ON public.addresses
+USING hash
+(
+	billing_address
+);
+-- ddl-end --
+
+-- object: index_addresses_on_zip | type: INDEX --
+-- DROP INDEX IF EXISTS public.index_addresses_on_zip CASCADE;
+CREATE INDEX index_addresses_on_zip ON public.addresses
+USING hash
+(
+	zip
+);
+-- ddl-end --
+
 -- object: items_fk_part_id | type: CONSTRAINT --
 -- ALTER TABLE public.items DROP CONSTRAINT IF EXISTS items_fk_part_id CASCADE;
 ALTER TABLE public.items ADD CONSTRAINT items_fk_part_id FOREIGN KEY (part_id)
@@ -223,18 +475,16 @@ REFERENCES public.customers (id) MATCH SIMPLE
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
--- object: orderrs_fk_address_id | type: CONSTRAINT --
--- ALTER TABLE public.orders DROP CONSTRAINT IF EXISTS orderrs_fk_address_id CASCADE;
-ALTER TABLE public.orders ADD CONSTRAINT orderrs_fk_address_id FOREIGN KEY (address_id)
+-- object: orders_fk_address_id | type: CONSTRAINT --
+-- ALTER TABLE public.orders DROP CONSTRAINT IF EXISTS orders_fk_address_id CASCADE;
+ALTER TABLE public.orders ADD CONSTRAINT orders_fk_address_id FOREIGN KEY (address_id)
 REFERENCES public.addresses (id) MATCH SIMPLE
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
--- object: orderrs_fk_employee_id | type: CONSTRAINT --
--- ALTER TABLE public.orders DROP CONSTRAINT IF EXISTS orderrs_fk_employee_id CASCADE;
-ALTER TABLE public.orders ADD CONSTRAINT orderrs_fk_employee_id FOREIGN KEY (employee_id)
+-- object: orders_fk_employee_id | type: CONSTRAINT --
+-- ALTER TABLE public.orders DROP CONSTRAINT IF EXISTS orders_fk_employee_id CASCADE;
+ALTER TABLE public.orders ADD CONSTRAINT orders_fk_employee_id FOREIGN KEY (employee_id)
 REFERENCES public.employees (id) MATCH SIMPLE
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
-
-

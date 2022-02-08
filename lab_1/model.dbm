@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.4" use-changelog="false" last-position="176,534" last-zoom="1" max-obj-count="14"
+<dbmodel pgmodeler-ver="0.9.4" use-changelog="false" last-position="139,613" last-zoom="1" max-obj-count="14"
 	 default-schema="public" default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -19,7 +19,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="items" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1280" y="500"/>
+	<position x="1300" y="440"/>
 	<column name="id" not-null="true"
 	 identity-type="ALWAYS">
 		<type name="bigint" length="0"/>
@@ -264,6 +264,230 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
+<index name="index_customers_on_id" table="public.customers"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="id"/>
+		</idxelement>
+</index>
+
+<index name="index_customers_on_address_id" table="public.customers"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="address_id"/>
+		</idxelement>
+</index>
+
+<index name="index_customers_on_fax_id" table="public.customers"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="fax_id"/>
+		</idxelement>
+</index>
+
+<index name="index_customers_on_phone_id" table="public.customers"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="phone_id"/>
+		</idxelement>
+</index>
+
+<index name="index_orders_on_id" table="public.orders"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="id"/>
+		</idxelement>
+</index>
+
+<index name="index_orders_on_customer_id" table="public.orders"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="customer_id"/>
+		</idxelement>
+</index>
+
+<index name="index_orders_on_address_id" table="public.orders"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="address_id"/>
+		</idxelement>
+</index>
+
+<index name="index_orders_on_employee_id" table="public.orders"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="employee_id"/>
+		</idxelement>
+</index>
+
+<index name="index_orders_on_created_at" table="public.orders"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="created_at"/>
+		</idxelement>
+</index>
+
+<index name="index_items_on_id" table="public.items"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="id"/>
+		</idxelement>
+</index>
+
+<index name="index_items_on_order_id" table="public.items"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="order_id"/>
+		</idxelement>
+</index>
+
+<index name="index_items_on_part_id" table="public.items"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="part_id"/>
+		</idxelement>
+</index>
+
+<index name="index_employees_on_id" table="public.employees"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="id"/>
+		</idxelement>
+</index>
+
+<index name="index_parts_on_id" table="public.parts"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="id"/>
+		</idxelement>
+</index>
+
+<index name="index_parts_on_vendor_id" table="public.parts"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="vendor_id"/>
+		</idxelement>
+</index>
+
+<index name="index_vendors_on_id" table="public.vendors"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="id"/>
+		</idxelement>
+</index>
+
+<index name="index_vendors_on_address_id" table="public.vendors"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="address_id"/>
+		</idxelement>
+</index>
+
+<index name="index_vendors_on_fax_id" table="public.vendors"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="fax_id"/>
+		</idxelement>
+</index>
+
+<index name="index_vendors_on_phone_id" table="public.vendors"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="phone_id"/>
+		</idxelement>
+</index>
+
+<index name="index_faxes_on_id" table="public.faxes"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="id"/>
+		</idxelement>
+</index>
+
+<index name="index_faxes_on_fax" table="public.faxes"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="hash" factor="0">
+		<idxelement use-sorting="false">
+			<column name="fax"/>
+		</idxelement>
+</index>
+
+<index name="index_phones_on_id" table="public.phones"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="id"/>
+		</idxelement>
+</index>
+
+<index name="index_phones_on_phone" table="public.phones"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="hash" factor="0">
+		<idxelement use-sorting="false">
+			<column name="phone"/>
+		</idxelement>
+</index>
+
+<index name="index_addresses_on_id" table="public.addresses"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="id"/>
+		</idxelement>
+</index>
+
+<index name="index_addresses_on_country" table="public.addresses"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="hash" factor="0">
+		<idxelement use-sorting="false">
+			<column name="country"/>
+		</idxelement>
+</index>
+
+<index name="index_addresses_on_shipping_address" table="public.addresses"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="hash" factor="0">
+		<idxelement use-sorting="false">
+			<column name="shipping_address"/>
+		</idxelement>
+</index>
+
+<index name="index_addresses_on_billing_address" table="public.addresses"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="hash" factor="0">
+		<idxelement use-sorting="false">
+			<column name="billing_address"/>
+		</idxelement>
+</index>
+
+<index name="index_addresses_on_zip" table="public.addresses"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="hash" factor="0">
+		<idxelement use-sorting="false">
+			<column name="zip"/>
+		</idxelement>
+</index>
+
 <constraint name="items_fk_part_id" type="fk-constr" comparison-type="MATCH SIMPLE"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.parts" table="public.items">
 	<columns names="part_id" ref-type="src-columns"/>
@@ -324,13 +548,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
-<constraint name="orderrs_fk_address_id" type="fk-constr" comparison-type="MATCH SIMPLE"
+<constraint name="orders_fk_address_id" type="fk-constr" comparison-type="MATCH SIMPLE"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.addresses" table="public.orders">
 	<columns names="address_id" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
-<constraint name="orderrs_fk_employee_id" type="fk-constr" comparison-type="MATCH SIMPLE"
+<constraint name="orders_fk_employee_id" type="fk-constr" comparison-type="MATCH SIMPLE"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.employees" table="public.orders">
 	<columns names="employee_id" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
@@ -419,7 +643,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <relationship name="address_has_many_orders" type="relfk" layers="0"
 	 src-table="public.orders"
-	 dst-table="public.addresses" reference-fk="orderrs_fk_address_id"
+	 dst-table="public.addresses" reference-fk="orders_fk_address_id"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
 		<position x="0" y="0"/>
@@ -428,7 +652,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <relationship name="employee_has_many_orders" type="relfk" layers="0"
 	 src-table="public.orders"
-	 dst-table="public.employees" reference-fk="orderrs_fk_employee_id"
+	 dst-table="public.employees" reference-fk="orders_fk_employee_id"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
 		<position x="0" y="0"/>
