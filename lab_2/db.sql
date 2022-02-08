@@ -42,7 +42,7 @@ USING btree
 CREATE TABLE public.requests (
 	uuid uuid NOT NULL,
 	user_uuid uuid NOT NULL,
-	"song artist" character varying NOT NULL,
+	song_artist character varying NOT NULL,
 	song_name character varying NOT NULL,
 	created_at timestamp NOT NULL,
 	played_at timestamp,

@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.4" use-changelog="false" last-position="306,106" last-zoom="1.35" max-obj-count="4"
+<dbmodel pgmodeler-ver="0.9.4" use-changelog="false" last-position="483,111" last-zoom="1.35" max-obj-count="4"
 	 default-schema="public" default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -61,7 +61,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="user_uuid" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
-	<column name="song artist" not-null="true">
+	<column name="song_artist" not-null="true">
 		<type name="character varying" length="0"/>
 	</column>
 	<column name="song_name" not-null="true">
