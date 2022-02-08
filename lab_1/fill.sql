@@ -1,22 +1,22 @@
 -- phones
-INSERT INTO phones (phone) 
-VALUES 
-  ('+1(720)641-92-98'), 
-  ('+1(865)256-56-20'), 
-  ('+7(952)471-46-90'), 
+INSERT INTO phones (phone)
+VALUES
+  ('+1(720)641-92-98'),
+  ('+1(865)256-56-20'),
+  ('+7(952)471-46-90'),
   ('+7(915)423-12-22');
 
 -- faxes
-INSERT INTO faxes (fax) 
-VALUES 
-  ('+44 161 999 8888'), 
+INSERT INTO faxes (fax)
+VALUES
+  ('+44 161 999 8888'),
   ('+1 212 999 8888'),
-  ('+1 212 222 8888'); 
+  ('+1 212 222 8888');
 
 -- addresses
 INSERT INTO addresses (
-  billing_address, 
-  shipping_address, 
+  billing_address,
+  shipping_address,
   city,
   zip,
   country
@@ -30,7 +30,7 @@ INSERT INTO addresses (
   '372 Blackwell Street',
   '2489 Blackwell Street',
   'Fairbanks',
-  '99701', 
+  '99701',
   'us'
 ), (
   '4566 Anmoore Road',
@@ -63,15 +63,15 @@ INSERT INTO vendors (
 
 -- parts
 INSERT INTO parts (
-  vendor_id, 
-  description, 
+  vendor_id,
+  description,
   on_hand,
   on_order,
   cost,
   list_price
 ) VALUES (
-  3, 
-  'some object', 
+  3,
+  'some object',
   100, 20,
   1000, 1500
 ), (
@@ -91,9 +91,9 @@ INSERT INTO customers (
   last_invoice_date
 ) VALUES (
   1, 4, 1,
-  20, 
+  20,
   '{"msg": "None"}'::jsonb,
-  '08/02/2022'
+  '2020-08-22'
 );
 
 -- employee
@@ -104,36 +104,36 @@ INSERT INTO employees (
   salary
 ) VALUES (
   'Glenn', 'Johnson',
-  '20/05/2020', 4000
+  '2020-05-20', 4000
 ), (
   'Julia', 'Lemelin',
-  '12/12/2021', 3500
+  '2021-12-12', 3500
 );
 
 -- orders
 INSERT INTO orders (
-  customer_id, 
-  address_id, 
-  employee_id, 
-  payment_method, 
-  items_total, 
-  tax_rate, 
-  freight, 
-  amount_paid, 
-  created_at, 
+  customer_id,
+  address_id,
+  employee_id,
+  payment_method,
+  items_total,
+  tax_rate,
+  freight,
+  amount_paid,
+  created_at,
   shipped_at
 ) VALUES (
   1, 1, 1,
   '{"method": "card", "card_type": "visa", "status": "done"}'::jsonb,
   1, 5,
   '{"expected delivery time": "40 days"}'::jsonb,
-  10000, '10/08/2021', '01/10/2021'
+  10000, '2021-08-10', '01/10/2021'
 ), (
   1, 1, 2,
   '{"method": "bank transh", "status": "pending"}'::jsonb,
   2, 3,
   '{"expected delivery time": "28 days"}'::jsonb,
-  30000, '08/02/2022', null
+  30000, '2022-02-08', null
 );
 
 --items
