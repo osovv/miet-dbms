@@ -1,0 +1,109 @@
+al=# create database dbms_lab_2;
+CREATE DATABASE
+Time: 71.171 ms
+al=# \c dbms_lab_2;
+You are now connected to database "dbms_lab_2" as user "al".
+dbms_lab_2=# \i db.sql;
+CREATE DATABASE
+Time: 75.203 ms
+CREATE TABLE
+Time: 4.810 ms
+ALTER TABLE
+Time: 0.227 ms
+CREATE INDEX
+Time: 1.064 ms
+CREATE TABLE
+Time: 2.754 ms
+ALTER TABLE
+Time: 0.287 ms
+CREATE INDEX
+Time: 1.148 ms
+CREATE INDEX
+Time: 1.045 ms
+CREATE INDEX
+Time: 1.228 ms
+ALTER TABLE
+┌────────┬──────────┬───────┬──────────┐
+│ Schema │   Name   │ Type  │  Owner   │
+├────────┼──────────┼───────┼──────────┤
+│ public │ requests │ table │ postgres │
+│ public │ users    │ table │ postgres │
+└────────┴──────────┴───────┴──────────┘
+(2 rows)
+
+dbms_lab_2=*# \d requests;
+                           Table "public.requests"
+┌─────────────┬─────────────────────────────┬───────────┬──────────┬─────────┐
+│   Column    │            Type             │ Collation │ Nullable │ Default │
+├─────────────┼─────────────────────────────┼───────────┼──────────┼─────────┤
+│ uuid        │ uuid                        │           │ not null │         │
+│ user_uuid   │ uuid                        │           │ not null │         │
+│ song_artist │ character varying           │           │ not null │         │
+│ song_name   │ character varying           │           │ not null │         │
+│ created_at  │ timestamp without time zone │           │ not null │         │
+│ played_at   │ timestamp without time zone │           │          │         │
+│ skipped     │ boolean                     │           │          │ false   │
+└─────────────┴─────────────────────────────┴───────────┴──────────┴─────────┘
+Indexes:
+    "requests_pk_uuid" PRIMARY KEY, btree (uuid)
+    "index_requests_created_at" btree (created_at)
+    "index_requests_on_user_uuid" btree (user_uuid)
+    "index_requests_on_uuid" btree (uuid)
+Foreign-key constraints:
+    "requests_fk_user_uuid" FOREIGN KEY (user_uuid) REFERENCES users(uuid)
+
+dbms_lab_2=*# \d users;
+                             Table "public.users"
+┌────────────────────┬───────────────────────┬───────────┬──────────┬─────────┐
+│       Column       │         Type          │ Collation │ Nullable │ Default │
+├────────────────────┼───────────────────────┼───────────┼──────────┼─────────┤
+│ uuid               │ uuid                  │           │ not null │         │
+│ name               │ character varying(20) │           │ not null │         │
+│ encrypted_password │ character varying     │           │ not null │         │
+│ banned             │ boolean               │           │ not null │ false   │
+│ permissions        │ jsonb                 │           │ not null │         │
+│ requests_count     │ bigint                │           │ not null │         │
+└────────────────────┴───────────────────────┴───────────┴──────────┴─────────┘
+Indexes:
+    "users_pk_uuid" PRIMARY KEY, btree (uuid)
+    "index_users_on_uuid" btree (uuid)
+Referenced by:
+    TABLE "requests" CONSTRAINT "requests_fk_user_uuid" FOREIGN KEY (user_uuid) REFERENCES
+
+dbms_lab_2=*# \i fill.sql;
+INSERT 0 5
+Time: 1.255 ms
+UPDATE 1
+Time: 0.586 ms
+INSERT 0 8
+Time: 2.791 ms
+dbms_lab_2=*# select * from users;
+┌──────────────────────────────────────┬─────────┬────────────────────┬────────┬───────────────────────────────────────────────────┬────────────────┐
+│                 uuid                 │  name   │ encrypted_password │ banned │                    permissions                    │ requests_count │
+├──────────────────────────────────────┼─────────┼────────────────────┼────────┼───────────────────────────────────────────────────┼────────────────┤
+│ af2ba6b0-88d9-11ec-8683-d7a850d73638 │ aleksey │ fakeuser           │ f      │ {"play_requests": false, "create_requests": true} │              3 │
+│ af2baa20-88d9-11ec-8684-275c1c46bef4 │ dima    │ fakeuser           │ f      │ {"play_requests": false, "create_requests": true} │              2 │
+│ af2baa52-88d9-11ec-8685-47c3c6d6e3a2 │ dmitriy │ fakeuser           │ f      │ {"play_requests": true, "create_requests": true}  │              0 │
+│ af2baaac-88d9-11ec-8687-e311aff7a11d │ tolya   │ fakeuser           │ f      │ {"play_requests": false, "create_requests": true} │              2 │
+│ af2baa7a-88d9-11ec-8686-bf2f74771574 │ vadim   │ fakeuser           │ t      │ {"play_requests": false, "create_requests": true} │              1 │
+└──────────────────────────────────────┴─────────┴────────────────────┴────────┴───────────────────────────────────────────────────┴────────────────┘
+(5 rows)
+
+Time: 0.687 ms
+dbms_lab_2=*# select * from requests;
+┌──────────────────────────────────────┬──────────────────────────────────────┬─────────────┬───────────────────┬─────────────────────┬───────────┬─────────┐
+│                 uuid                 │              user_uuid               │ song_artist │     song_name     │     created_at      │ played_at │ skipped │
+├──────────────────────────────────────┼──────────────────────────────────────┼─────────────┼───────────────────┼─────────────────────┼───────────┼─────────┤
+│ 61e3a4d8-88da-11ec-8c65-f31660403032 │ af2baa7a-88d9-11ec-8686-bf2f74771574 │ bad         │ song              │ 2021-02-08 15:29:25 │ ø         │ t       │
+│ 61e3a5c8-88da-11ec-8c66-3fbbd018f8b8 │ af2baaac-88d9-11ec-8687-e311aff7a11d │ БРАВО       │ Чудесная страна   │ 2021-02-08 15:31:14 │ ø         │ f       │
+│ 61e3a5f0-88da-11ec-8c67-1b52878f7f56 │ af2baaac-88d9-11ec-8687-e311aff7a11d │ Clairo      │ Pretty Girl       │ 2021-02-08 15:32:15 │ ø         │ f       │
+│ 61e3a60e-88da-11ec-8c68-7ff0042a20fd │ af2ba6b0-88d9-11ec-8683-d7a850d73638 │ Morandi     │ Angels            │ 2021-02-08 15:43:12 │ ø         │ f       │
+│ 61e3a62c-88da-11ec-8c69-fb153e44133e │ af2ba6b0-88d9-11ec-8683-d7a850d73638 │ Air         │ Playground Love   │ 2021-02-08 15:45:31 │ ø         │ f       │
+│ 61e3a64a-88da-11ec-8c6a-4b95919023e4 │ af2ba6b0-88d9-11ec-8683-d7a850d73638 │ Ray Charles │ Hit the Road Jack │ 2021-02-08 15:47:33 │ ø         │ f       │
+│ 61e3a668-88da-11ec-8c6b-c7b8b46a3de4 │ af2baa20-88d9-11ec-8684-275c1c46bef4 │ Versake     │ Outside           │ 2021-02-08 15:55:01 │ ø         │ f       │
+│ 61e3a686-88da-11ec-8c6c-1f72cb0e1e64 │ af2baa20-88d9-11ec-8684-275c1c46bef4 │ Rodriguez   │ Sugar Man         │ 2021-02-08 15:56:19 │ ø         │ f       │
+└──────────────────────────────────────┴──────────────────────────────────────┴─────────────┴───────────────────┴─────────────────────┴───────────┴─────────┘
+(8 rows)
+
+Time: 0.675 ms
+dbms_lab_2=*#
