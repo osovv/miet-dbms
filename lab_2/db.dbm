@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.4" use-changelog="false" last-position="306,106" last-zoom="1.35" max-obj-count="4"
+	 default-schema="public" default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<database name="miet_lab2" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" layers="0" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="users" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="480" y="180"/>
+	<column name="uuid" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="encrypted_password" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="banned" not-null="true" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="permissions" not-null="true">
+		<type name="jsonb" length="0"/>
+	</column>
+	<column name="requests_count" not-null="true">
+		<type name="bigint" length="0"/>
+	</column>
+	<constraint name="users_pk_uuid" type="pk-constr" table="public.users">
+		<columns names="uuid" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<index name="index_users_on_uuid" table="public.users"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="uuid"/>
+		</idxelement>
+</index>
+
+<table name="requests" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="980" y="180"/>
+	<column name="uuid" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="user_uuid" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="song artist" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="song_name" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="created_at" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="played_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="skipped" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="requests_pk_uuid" type="pk-constr" table="public.requests">
+		<columns names="uuid" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<index name="index_requests_on_uuid" table="public.requests"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="uuid"/>
+		</idxelement>
+</index>
+
+<index name="index_requests_on_user_uuid" table="public.requests"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="user_uuid"/>
+		</idxelement>
+</index>
+
+<index name="index_requests_created_at" table="public.requests"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="created_at"/>
+		</idxelement>
+</index>
+
+<constraint name="requests_fk_user_uuid" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.users" table="public.requests">
+	<columns names="user_uuid" ref-type="src-columns"/>
+	<columns names="uuid" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="user_has_many_requests" type="relfk" layers="0"
+	 src-table="public.requests"
+	 dst-table="public.users" reference-fk="requests_fk_user_uuid"
+	 src-required="false" dst-required="true">
+	<label ref-type="name-label">
+		<position x="-30.1139" y="-38.2253"/>
+	</label>
+</relationship>
+
+</dbmodel>
