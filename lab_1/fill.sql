@@ -1,7 +1,7 @@
 -- phones
-INSERT INTO public.phones (phone) 
+INSERT INTO phones (phone) 
 VALUES 
-  ('+1(720)641-92-98), 
+  ('+1(720)641-92-98'), 
   ('+1(865)256-56-20'), 
   ('+7(952)471-46-90'), 
   ('+7(915)423-12-22');
@@ -64,14 +64,14 @@ INSERT INTO vendors (
 -- parts
 INSERT INTO parts (
   vendor_id, 
-  descriptiion, 
+  description, 
   on_hand,
   on_order,
   cost,
   list_price
 ) VALUES (
   3, 
-  "some object", 
+  'some object', 
   100, 20,
   1000, 1500
 ), (
@@ -92,7 +92,7 @@ INSERT INTO customers (
 ) VALUES (
   1, 4, 1,
   20, 
-  {'msg': 'None'}::jsonb,
+  '{"msg": "None"}'::jsonb,
   '08/02/2022'
 );
 
@@ -124,15 +124,15 @@ INSERT INTO orders (
   shipped_at
 ) VALUES (
   1, 1, 1,
-  {'method': 'card', 'card_type': 'visa', 'status': 'done'}::jsonb,
+  '{"method": "card", "card_type": "visa", "status": "done"}'::jsonb,
   1, 5,
-  {'expected delivery time': '40 days'}::jsonb,
+  '{"expected delivery time": "40 days"}'::jsonb,
   '10/08/2021', '01/10/2021'
 ), (
   1, 1, 2,
-  {'method': 'bank transh', 'status': 'pending'}::jsonb,
+  '{"method": "bank transh", "status": "pending"}'::jsonb,
   2, 3,
-  {'expected delivery time': '28 days'}::jsonb,
+  '{"expected delivery time": "28 days"}'::jsonb,
   '08/02/2022', None
 );
 
@@ -147,8 +147,8 @@ INSERT INTO items (
   10, None
 ), (
   2, 1,
-  20, {'for cooperation': 20}::jsonb
+  20, '{"for cooperation": "20"}'::jsonb
 ), (
   2, 2,
-  15, {'for cooperation': 3}::jsonb
+  15, '{"for cooperation": "3"}'::jsonb
 );
