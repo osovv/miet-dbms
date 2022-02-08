@@ -136,7 +136,7 @@ ALTER TABLE public.employees OWNER TO postgres;
 -- object: public.orders | type: TABLE --
 -- DROP TABLE IF EXISTS public.orders CASCADE;
 CREATE TABLE public.orders (
-	id bigint NOT NULL,
+	id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ,
 	customer_id bigint,
 	address_id bigint,
 	employee_id bigint,
