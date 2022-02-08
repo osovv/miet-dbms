@@ -144,7 +144,7 @@ INSERT INTO items (
   discount
 ) VALUES (
   1, 1,
-  10, None
+  10, null
 ), (
   2, 1,
   20, '{"for cooperation": "20"}'::jsonb
